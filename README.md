@@ -16,7 +16,11 @@ PUBG迫击炮辅助工具
 ```math
 
 y = - \frac{g}{2v_0^2 \cos^2{\theta}} x^2 + x\tan{\theta}
-\\
+
+```
+
+```math
+
 \tan{\beta} = \frac{H}{L}
 
 ```
