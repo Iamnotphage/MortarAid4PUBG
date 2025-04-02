@@ -97,6 +97,14 @@ R = \frac{L + tan{\beta}(M - \sqrt{M^2 - 2LM\tan{\beta} - L^2})}{\tan^2{\beta} +
 
 ## 使用方法
 
+```bash
+pyinstaller --onefile --windowed --name "MortarAid" --icon=img/icon.ico .\main.py
+```
+
+或者直接下载 `release`
+
+---
+
 Alt + Q: 开始测距
 
 Alt + Left: 开始标点
