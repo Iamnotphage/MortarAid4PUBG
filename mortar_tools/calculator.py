@@ -13,7 +13,16 @@ class calculator:
         self.result = 0 # distance setting of the mortar
         self.MAX_DISTANCE = 700 # maximum distance in mortar range
         self.MAX_DEGREE = 26.19 # maximum degree of elevation angle
-        self.CENTER_PIXEL_Y = 719 # center of the screen in pixels (for 2160 x 1440 resolution)
+        self.CENTER_PIXEL_Y = 719.5 # default center for 1440p, can be overridden by current viewport height
+
+    def set_viewport_height(self, viewport_height):
+        """Update vertical center according to current screen/game viewport height."""
+        if not isinstance(viewport_height, (int, float)):
+            return
+        viewport_height = float(viewport_height)
+        if viewport_height <= 0:
+            return
+        self.CENTER_PIXEL_Y = (viewport_height - 1.0) / 2.0
 
     def set_scale_factor(self, point1, point2):
         """
@@ -48,7 +57,10 @@ class calculator:
 
         # print(point)
 
-        delta_y = self.CENTER_PIXEL_Y - point[1]
+        delta_y = self.CENTER_PIXEL_Y - float(point[1])
+        if self.CENTER_PIXEL_Y <= 0:
+            self.evelation_angle = 0.0
+            return self.evelation_angle
 
         angle_in_degrees = delta_y * self.MAX_DEGREE / self.CENTER_PIXEL_Y
         self.evelation_angle = angle_in_degrees
